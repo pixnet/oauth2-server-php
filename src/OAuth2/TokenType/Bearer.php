@@ -65,6 +65,9 @@ class Bearer implements TokenTypeInterface
         // HEADER: Get the access token from the header
         if (!empty($headers)) {
             if (!preg_match('/' . $this->config['token_bearer_header_name'] . '\s(\S+)/', $headers, $matches)) {
+
+                error_log("ticket28776 Malformed auth header: $headers");
+
                 $response->setError(400, 'invalid_request', 'Malformed auth header');
                 return null;
             }
